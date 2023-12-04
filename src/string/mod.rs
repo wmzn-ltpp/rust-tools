@@ -24,7 +24,7 @@ where
 {
     let res: Vec<T> = str
         .split_whitespace()
-        .map(|tem_str| tem_str.parse().unwrap())
+        .map(|tem_str| tem_str.parse().expect("存在非数字类型字符串"))
         .collect();
     res
 }
@@ -41,4 +41,11 @@ pub fn update_string_loc_val(str: &mut String, loc: usize, new_val: char) {
         *ch = new_val;
     }
     *str = chars.into_iter().collect();
+}
+
+pub fn str_to_number<T: std::str::FromStr>(str: &String) -> T
+where
+    T::Err: std::fmt::Debug,
+{
+    str.parse().expect("字符串包含数字以外字符")
 }

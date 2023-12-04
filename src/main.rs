@@ -35,5 +35,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     string::update_string_loc_val(&mut str, 0, '1');
     cout::run(&"修改后的读入数据：");
     cout::run(&str);
+    // 测试字符串转数字
+    str = String::from("123123");
+    let res: i32 = string::str_to_number(&str);
+    cout::run(&res);
     Ok(())
 }
